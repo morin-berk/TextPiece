@@ -1,9 +1,11 @@
 FROM python:3.9.5
 
-COPY ./requirements.txt requirements.txt
+WORKDIR /code
 
-RUN pip install --no-cache-dir --upgrade -r requirements.txt
+COPY ./requirements.txt /code/requirements.txt
 
-COPY ./app /app
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
+COPY ./app /code/app
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
