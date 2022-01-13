@@ -1,10 +1,17 @@
+import os
 from typing import List, Union
 
+from dotenv import find_dotenv, load_dotenv
 from elasticsearch import Elasticsearch
 
-INDEX_NAME = "fastapi_project"
+load_dotenv(find_dotenv())
 
-es = Elasticsearch([f"elasticsearch:9200"])
+INDEX_NAME = "fastapi_project"
+ES_HOST = os.environ.get("ES_HOST")
+ES_PORT = os.environ.get("ES_PORT")
+
+es = Elasticsearch(host=ES_HOST, port=ES_PORT)
+
 
 mapping = {
     "properties": {
