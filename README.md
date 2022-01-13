@@ -22,7 +22,7 @@ Documentation: *localhost:8080/docs*
 Elasticsearch is used as a storage and a search system. 
 
 If no params are specified, it returns list of all text pieces. 
-Optional params allow filter results. Can be used in any combination.
+Optional params allow filtering results. Can be used in any combination.
 - *text* - search similar text;
 - *text_type* - either "paragraph" or "title";
 - *page_number*;
