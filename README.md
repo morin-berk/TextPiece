@@ -8,11 +8,11 @@ the second allows searching text pieces.
 ## Installation
 The service uses Docker.
 
-**docker-compose up --build** to build the image and run the web service for the first time.
+**docker-compose up --build** to build an image and run the web service for the first time.
 
 **docker-compose down** to stop the container.
 
-**docker-compose up -d** to run the container the next time.
+**docker-compose up -d** to run the container next times.
 
 ## Getting started 
 The web service runs on *localhost:8080*
