@@ -13,9 +13,9 @@ services:
   web-service:
       build: .
       ports:
-        - "80:80"
+        - ${APP_PORT}:${APP_PORT}
       depends_on:
-        - "elasticsearch"
+        - elasticsearch
       networks:
         - fastapi-es
 networks:

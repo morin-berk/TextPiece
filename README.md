@@ -4,7 +4,7 @@ The aim is to learn FastAPI framework, elasticsearch.
 
 The service uses Docker.
 
-**compose-up --build** to build the image and run the web service the first time.
+**docker-compose up --build** to build the image and run the web service the first time.
 
 **docker-compose down** to stop the container.
 
