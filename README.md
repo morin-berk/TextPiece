@@ -1,8 +1,7 @@
 # TextPiece 
-This is a student micro-project, a web service that can save, organize and search for pieces of text among already saved results. 
-The aim is to learn FastAPI framework, Elasticsearch.
+This is a student micro-project. The aim is to learn FastAPI framework, Elasticsearch.
 
-The service consists of two endpoints. The first saved a text piece object to the storage, 
+TextPice is a web service, consisting of two endpoints. The first saves a text piece object to the storage, 
 the second allows searching text pieces. 
 
 ## Installation
