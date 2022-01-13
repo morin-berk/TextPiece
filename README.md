@@ -16,6 +16,7 @@ The service uses Docker.
 
 ## Getting started 
 The web service runs on *localhost:8080*
+
 Documentation: *localhost:8080/docs*
 
 ## Searching
