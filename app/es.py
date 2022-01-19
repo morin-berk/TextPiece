@@ -12,7 +12,6 @@ ES_PORT = os.environ.get("ES_PORT")
 
 es = Elasticsearch(host=ES_HOST, port=ES_PORT)
 
-
 mapping = {
     "properties": {
         "document_id": {"type": "integer"},
@@ -38,15 +37,22 @@ def get_all_text_pieces() -> Union[List[dict], str]:
 def get_filtered_text_pieces(query: dict) -> Union[List[dict], str]:
     """Returns TextPieces that matches the search criteria,
     given in the query param. If nothing matches, returns an empty list."""
-    query_body = {"query": {"bool": {"must": []}}}
+    query_body = {"query": {"bool": {}}}
 
     for key, value in query.items():
         if key == "text":
-            query_body["query"]["bool"]["must"].append(
-                {"match": {key: {"query": value, "fuzziness": "auto"}}}
+            query_body["query"]["bool"].update(
+                {
+                    "must": {
+                        "match": {key: {"query": value, "fuzziness": "auto"}}
+                    }
+                }
             )
         else:
-            query_body["query"]["bool"]["must"].append({"match": {key: value}})
+            query_body["query"]["bool"].setdefault("filter", [])
+            query_body["query"]["bool"]["filter"].append(
+                {"term": {key: value}}
+            )
 
     results = es.search(index=INDEX_NAME, body=query_body)
     return [doc["_source"] for doc in results["hits"]["hits"]]

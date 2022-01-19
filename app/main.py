@@ -5,8 +5,11 @@ from fastapi import FastAPI, Query, Request, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
-from app.es import (get_all_text_pieces, get_filtered_text_pieces,
-                    index_text_piece)
+from app.es import (
+    get_all_text_pieces,
+    get_filtered_text_pieces,
+    index_text_piece,
+)
 from app.schemas import TextPiece, NotFoundIndexSchema
 
 TEXT_PIECE_PATH = "/pieces"
@@ -16,7 +19,8 @@ app = FastAPI()
 
 @app.exception_handler(NotFoundError)
 async def not_found_piece_exception_handler(
-        request: Request, exc: NotFoundError):
+    request: Request, exc: NotFoundError
+):
     return JSONResponse(
         status_code=404, content={"message": "The index doesn`t exist yet."}
     )
@@ -42,12 +46,13 @@ def index_piece(piece: TextPiece):
     response_description="Text pieces, matching the search criteria.",
     status_code=status.HTTP_200_OK,
     response_model=List[TextPiece],
-    responses={404: {"model": NotFoundIndexSchema}}
+    responses={404: {"model": NotFoundIndexSchema}},
 )
 def read_pieces(
     text: Optional[str] = Query(
-        None, example="Random text piece...",
-        description="Find similar text pieces"
+        None,
+        example="Random text piece...",
+        description="Find similar text pieces",
     ),
     piece_type: Optional[str] = Query(
         None, example="title", description='Either "title" or "paragraph"'
