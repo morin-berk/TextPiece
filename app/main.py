@@ -62,7 +62,7 @@ def read_pieces(
 ):
     """Allows to get the list of already indexed pieces,
     also provides filtering options."""
-    query = dict()
+    query = {}
     for param_key, param_value in zip(
         ("text", "piece_type", "page_number", "document_name"),
         (text, piece_type, page_number, document_name),
